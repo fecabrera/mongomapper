@@ -5,7 +5,7 @@ setup(
   packages=find_packages(include=['mongomapper']),
   version='0.1.0',
   description='MongoMapper',
-  install_requires=open('requirements.txt').read().split(),
+  install_requires=['python-dotenv','pydantic', 'pymongo[srv]'],
   author='Felipe Cabrera',
   author_email='fecabrera@protonmail.com',
   license='MIT',
