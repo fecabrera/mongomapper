@@ -13,8 +13,8 @@ class Car(Schema):
   plate: str
   owner: Reference(Person)
 
-person = Person.create(name="Felipe", birthday="1995-12-02")
+person = Person.create(name="John", birthday="1990-01-01")
 car = Car.create(plate="ABCD10", owner=person)
 
-print(person.reference)
-print(car.reference)
+print(person.data)
+print(car.data)
