@@ -5,6 +5,9 @@ Mongo ODM in Python.
 MongoMapper is an easy to use ODM for MongoDB, written on top of Pydantic for data validation. Most importantly, it supports `datetime.time` out-of-the-box because for some reason not even the official MongoDB library supports it. Do coders hate dates that much?
 
 ## Install
+```
+pip install mongomapper
+```
 
 ## Quick start
 
