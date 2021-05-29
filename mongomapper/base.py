@@ -23,6 +23,11 @@ class BaseSchema(BaseModel):
   def data(self):
     return {'_id': self._id} | self.dict()
   
+  def save(self):
+    filter = {'_id': self._id}
+    data = {'$set': self.dict()}
+    self.collection.update_one(filter, data)
+  
   @classproperty
   def collection(cls):
     return db.get_collection(cls.__collection_name__)
