@@ -14,4 +14,7 @@ person = Person.create(name="John")
 phone = Phone.create(owner=person)
 
 print(person.data)
+print(person.json())
+
 print(phone.data)
+print(phone.json())
