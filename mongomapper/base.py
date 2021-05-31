@@ -21,7 +21,10 @@ class BaseSchema(BaseModel):
 
   @property
   def data(self):
-    return {'_id': self._id} | self.dict()
+    return self.dict()
+  
+  def dict(self, *args, **kwargs):
+    return {'_id': self._id} | super().dict(*args, **kwargs)
   
   def save(self):
     filter = {'_id': self._id}
