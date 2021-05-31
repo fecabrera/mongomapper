@@ -1,3 +1,4 @@
+from bson.objectid import ObjectId
 from bson.codec_options import TypeRegistry, CodecOptions
 
 from .utils import classproperty
@@ -22,3 +23,9 @@ class Schema(BaseSchema):
   @classproperty
   def query(self):
     return Query(model=self)
+  
+  class Config:
+    json_encoders = {
+      ObjectId: lambda oid: str(oid),
+      Reference: lambda ref: str(ref)
+    }

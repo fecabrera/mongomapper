@@ -9,9 +9,6 @@ def Reference(type):
     @property
     def document(self):
       return self.__schema__.get(self)
-    
-    def __str__(self):
-      return f'Reference<{self.__schema__.__name__}>("{super().__str__()}")'
 
     def __repr__(self):
       return f'Reference<{self.__schema__.__name__}>("{self}")'
