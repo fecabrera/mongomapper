@@ -19,11 +19,19 @@ class Schema(BaseSchema):
   @property
   def reference(self):
     return Reference(self.__class__)(self._id)
-  
+
   @classproperty
-  def query(self):
-    return Query(model=self)
-  
+  def query(cls):
+    return Query(model=cls)
+
+  @classmethod
+  def list(cls, **filter):
+    return cls.query.where(**filter).get()
+
+  @classmethod
+  def get(cls, document_id, **filter):
+    return cls.query.where(_id=ObjectId(document_id), **filter).get_one()
+
   class Config:
     json_encoders = {
       ObjectId: lambda oid: str(oid),
