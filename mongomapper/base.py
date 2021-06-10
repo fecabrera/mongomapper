@@ -34,12 +34,6 @@ class BaseSchema(BaseModel):
   @classproperty
   def collection(cls):
     return db.get_collection(cls.__collection_name__)
-  
-  @classmethod
-  def get(cls, document_id):
-    data = cls.collection.find_one({'_id': ObjectId(document_id)})
-    doc = cls(**data)
-    return doc
 
   @classmethod
   def create(cls, **data):
