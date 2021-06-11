@@ -15,14 +15,18 @@ class Query:
     self.filter = self.filter | filter
     return self
   
-  def get(self, limit: int = 0, skip: int = 0):
+  def find(self, limit: int = 0, skip: int = 0):
     docs = self.model.collection.find(self.filter, self.projection or None, skip, limit)
     return [self.model(**doc) for doc in docs]
   
-  def get_one(self):
+  def find_one(self):
     doc = self.model.collection.find_one(self.filter, self.projection or None)
 
     if doc is None:
       raise DocumentNotFoundError(model=self.model, filter=self.filter)
 
     return self.model(**doc)
+
+# DEPRECATED aliases
+Query.get = Query.find
+Query.get_one = Query.find_one

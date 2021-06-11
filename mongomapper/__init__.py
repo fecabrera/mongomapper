@@ -25,15 +25,18 @@ class Schema(BaseSchema):
     return Query(model=cls)
 
   @classmethod
-  def list(cls, **filter):
-    return cls.query.where(**filter).get()
+  def all(cls, **filter):
+    return cls.query.where(**filter).find()
 
   @classmethod
   def get(cls, document_id, **filter):
-    return cls.query.where(_id=ObjectId(document_id), **filter).get_one()
+    return cls.query.where(_id=ObjectId(document_id), **filter).find_one()
 
   class Config:
     json_encoders = {
       ObjectId: lambda oid: str(oid),
       Reference: lambda ref: str(ref)
     }
+
+# DEPRECATED aliases
+Schema.list = Schema.all
