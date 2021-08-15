@@ -15,6 +15,12 @@ class Query:
     self.filter = self.filter | filter
     return self
   
+  def delete(self):
+    return self.model.collection.delete_many(self.filter)
+  
+  def delete_one(self):
+    return self.model.collection.delete_one(self.filter)
+  
   def find(self, limit: int = 0, skip: int = 0):
     docs = self.model.collection.find(self.filter, self.projection or None, skip, limit)
     return [self.model(**doc) for doc in docs]
