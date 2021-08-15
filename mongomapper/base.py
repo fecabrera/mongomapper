@@ -31,6 +31,10 @@ class BaseSchema(BaseModel):
     data = {'$set': self.dict()}
     self.collection.update_one(filter, data)
   
+  def delete(self):
+    filter = {'_id': self._id}
+    self.collection.delete_one(filter)
+
   @classproperty
   def collection(cls):
     return db.get_collection(cls.__collection_name__)
